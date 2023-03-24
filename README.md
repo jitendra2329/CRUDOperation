@@ -21,4 +21,4 @@
                -> read method will simply return the hole List or Seq 
                
                
-               # I have added one addition method called find, which will find the data into the collection(List or Seq)
+               # I have added one additional method called find, which will find the data into the collection(List or Seq)

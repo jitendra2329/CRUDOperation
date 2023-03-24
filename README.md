@@ -2,6 +2,8 @@
 
 # Assignment => Create an abstract class "CRUD operations" having 4 methods - create, read, update, delete. Create 2 classes and extend both of them with "CRUD operations" abstract class - one class would be using list to perform CRUD operations and the other class would be using seq to perform CRUD operations.
 
+# I have added one additional method called find, which will find the data into the collection(List or Seq)
+
     This assignment contains Three source files and two test file. One Generic abstract class file, one CRUDOnList and one CRUDOnSeq.
     the abstract clsss contains five abstract methods (create, update, read, find and delete). The implementation of the abstract methods are
     in CRUDOnList which will work on Int type.
@@ -21,4 +23,4 @@
                -> read method will simply return the hole List or Seq 
                
                
-               # I have added one additional method called find, which will find the data into the collection(List or Seq)
+               

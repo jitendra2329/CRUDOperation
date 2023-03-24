@@ -1,4 +1,5 @@
 package com.knoldus
+
 import scala.annotation.tailrec
 
 class CRUDOnList[A] extends CRUDOperation[A] {
@@ -9,16 +10,20 @@ class CRUDOnList[A] extends CRUDOperation[A] {
     list
   }
 
-  def read(dataToFind: A): Int = {
+  def read(): List[A] = {
+    list
+  }
+
+  def find(dataToFind: A): Int = {
     @tailrec
-    def readHelper(dataToFind: A, index: Int): Int = {
+    def findHelper(dataToFind: A, index: Int): Int = {
       if (index == list.size - 1 && dataToFind != list(index))
         throw new IndexOutOfBoundsException("data not found in list!!") // handled in test class
       else if (dataToFind == list(index)) index
-      else readHelper(dataToFind, index + 1)
+      else findHelper(dataToFind, index + 1)
     }
 
-    readHelper(dataToFind, 0)
+    findHelper(dataToFind, 0)
   }
 
   def update(indexToUpdate: Int, dataToAdd: A): List[A] = {

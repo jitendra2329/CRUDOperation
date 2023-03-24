@@ -10,16 +10,20 @@ class CRUDOnSeq[A] extends CRUDOperation[A] {
     sequence
   }
 
-  def read(dataToFind: A): Int = {
+  def read(): Seq[A] = {
+    sequence
+  }
+
+  def find(dataToFind: A): Int = {
     @tailrec
-    def readHelper(dataToFind: A, index: Int): Int = {
+    def findHelper(dataToFind: A, index: Int): Int = {
       if (index == sequence.size - 1 && dataToFind != sequence(index))
         throw new IndexOutOfBoundsException("data not found in sequence!!") // handled in test class
       else if (dataToFind == sequence(index)) index
-      else readHelper(dataToFind, index + 1)
+      else findHelper(dataToFind, index + 1)
     }
 
-    readHelper(dataToFind, 0)
+    findHelper(dataToFind, 0)
   }
 
   def update(indexToUpdate: Int, dataToAdd: A): Seq[A] = {

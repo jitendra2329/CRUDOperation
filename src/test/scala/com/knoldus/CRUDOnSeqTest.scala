@@ -17,16 +17,22 @@ class CRUDOnSeqTest extends AnyFlatSpec {
     assert(actualSequence == expectedSequence)
   }
 
+  it should "return the hole List" in {
+    val actualSequence = sequenceCRUDOperation.read()
+    val expectedSequence = Seq("Jitendra", "Ravi", "Akash", "Ajit", "Pallav", "Bhavya")
+    assert(actualSequence == expectedSequence)
+  }
+
   it should "return index where data is found in the Seq" in {
     val dataToFind = "Bhavya"
-    val actualIndex = sequenceCRUDOperation.read(dataToFind)
+    val actualIndex = sequenceCRUDOperation.find(dataToFind)
     val expectedIndex = 5
     assert(actualIndex == expectedIndex)
   }
 
   it should "throw an IndexOutOfBoundException, in case data to be found is not present in the Seq " in {
     an[IndexOutOfBoundsException] should be thrownBy {
-      sequenceCRUDOperation.read("Manish")
+      sequenceCRUDOperation.find("Manish")
     }
   }
 

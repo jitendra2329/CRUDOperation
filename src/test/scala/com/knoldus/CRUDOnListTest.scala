@@ -1,4 +1,5 @@
 package com.knoldus
+
 import org.scalatest.matchers.must.Matchers.{an, be}
 import org.scalatest.flatspec.AnyFlatSpec
 
@@ -18,10 +19,16 @@ class CRUDOnListTest extends AnyFlatSpec {
     assert(actualList == expectedList)
   }
 
+  it should "return the hole List" in {
+    val actualList = listCRUDOperation.read()
+    val expectedList = List(69, 16, 62, 10, 5, 2)
+    assert(actualList == expectedList)
+  }
+
   //test case for reading the List
   it should "return index where data is found in the List" in {
     val dataToFind = 16
-    val actualIndex = listCRUDOperation.read(dataToFind)
+    val actualIndex = listCRUDOperation.find(dataToFind)
     val expectedIndex = 1
     assert(actualIndex == expectedIndex)
   }
@@ -29,19 +36,19 @@ class CRUDOnListTest extends AnyFlatSpec {
   //test case for reading the list, in case data to found is not in the list
   it should "throw an IndexOutOfBoundException, in case data to be found is not present in the List " in {
     an[IndexOutOfBoundsException] should be thrownBy {
-      listCRUDOperation.read(20)
+      listCRUDOperation.find(20)
     }
   }
 
-    //test case for updating the list on any given position
-    it should "return the updated list " in {
-      val indexToUpdate = 3
-      val dataToUpdate = 91
-      val actualResult = listCRUDOperation.update(indexToUpdate,dataToUpdate)
-      val expectedResult = List(69,16,62,91,5,2)
-      assert(actualResult == expectedResult)
+  //test case for updating the list on any given position
+  it should "return the updated list " in {
+    val indexToUpdate = 3
+    val dataToUpdate = 91
+    val actualResult = listCRUDOperation.update(indexToUpdate, dataToUpdate)
+    val expectedResult = List(69, 16, 62, 91, 5, 2)
+    assert(actualResult == expectedResult)
 
-    }
+  }
 
   //test case for updating the list, in case the index where the is to be update, is out of bound
   // index >= size of the list
@@ -49,13 +56,13 @@ class CRUDOnListTest extends AnyFlatSpec {
     val index = 6
     val dataToUpdate = 100
     an[IndexOutOfBoundsException] should be thrownBy {
-      listCRUDOperation.update(index,dataToUpdate)
+      listCRUDOperation.update(index, dataToUpdate)
     }
   }
 
-   /* test case for deleting the data from the list,
-      the delete method will return the updated list after deleting the data from the list
-     */
+  /* test case for deleting the data from the list,
+     the delete method will return the updated list after deleting the data from the list
+    */
   it should "return the updated list after deleting data from list" in {
     val dataToDelete = 2
     val actualResult = listCRUDOperation.delete(dataToDelete)
@@ -70,5 +77,5 @@ class CRUDOnListTest extends AnyFlatSpec {
       listCRUDOperation.delete(dataToDelete)
     }
   }
- }
+}
 
